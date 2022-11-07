@@ -5,15 +5,15 @@ import com.authentication.rules.AbstractPasswordValidationRule;
 
 public class SubsetOfRulesPasswordValidator extends BasicPasswordValidator{
 
-    private int noOfSubset=-1;
-    private boolean foundThreePositives = false;
+    protected int noOfSubset=-1;
+    protected boolean foundThreePositives = false;
 
 
     public SubsetOfRulesPasswordValidator(int noOfSubset) {
         this.noOfSubset = noOfSubset;
     }
 
-
+     @Override
     public boolean validate(final String stringToBeValidated){
 
         boolean response = false;
@@ -25,14 +25,14 @@ public class SubsetOfRulesPasswordValidator extends BasicPasswordValidator{
                     response = true;
                     break;
                 }
-            } catch (ValidationException e) {
-                System.out.printf("Validation failed: " +e.getMessage());
+            } catch (ValidationException validationException) {
+                System.out.printf("Validation failed: " +validationException.getMessage());
             }
         }
         return response;
     }
 
-    private void checkIfFurtherProcessingNeeded() {
+    protected void checkIfFurtherProcessingNeeded() {
         this.noOfSubset--;
         if(this.noOfSubset == 0){
             foundThreePositives = true;

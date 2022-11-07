@@ -3,6 +3,7 @@ package com.authentication.validator;
 import com.authentication.exceptions.ValidationException;
 import com.authentication.rules.AbstractPasswordValidationRule;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * It should be extended in case complex password validation required.
  */
 public class BasicPasswordValidator {
-    protected final List<AbstractPasswordValidationRule> rulesToBeValidated = new LinkedList<>();
+    protected final List<AbstractPasswordValidationRule> rulesToBeValidated = new ArrayList<>();
 
     public boolean validate(final String stringToBeValidated){
 
@@ -19,8 +20,8 @@ public class BasicPasswordValidator {
         for(AbstractPasswordValidationRule rules: rulesToBeValidated){
             try {
                 rules.validate(stringToBeValidated);
-            } catch (ValidationException e) {
-                System.out.printf("Validation failed: " +e.getMessage());
+            } catch (ValidationException validationException) {
+                System.out.printf("Validation failed: " +validationException.getMessage());
                 response = false;
                 break;
             }
