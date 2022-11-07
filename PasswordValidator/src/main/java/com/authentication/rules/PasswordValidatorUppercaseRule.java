@@ -6,6 +6,11 @@ public class PasswordValidatorUppercaseRule extends AbstractPasswordValidationRu
 
     @Override
     protected boolean validateRule(String stringToBeValidated) throws UppercaseValidationException {
-        throw new UppercaseValidationException("Credential should contain at least one uppercase char");
+        if(stringToBeValidated.matches(".*[A-Z].*")) {
+            return true;
+        } else {
+            throw new UppercaseValidationException("Credential should contain at least one uppercase char");
+        }
+
     }
 }
