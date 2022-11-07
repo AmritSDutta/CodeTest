@@ -11,7 +11,7 @@ import java.util.List;
  * It should be extended in case complex password validation required.
  */
 public class BasicPasswordValidator {
-    private final List<AbstractPasswordValidationRule> rulesToBeValidated = new LinkedList<>();
+    protected final List<AbstractPasswordValidationRule> rulesToBeValidated = new LinkedList<>();
 
     public boolean validate(final String stringToBeValidated){
 
