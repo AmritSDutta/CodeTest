@@ -2,6 +2,10 @@ package com.authentication.rules;
 
 import com.authentication.exceptions.UppercaseValidationException;
 
+
+/**
+ * Rule to explore presence of at least one uppercase in the password passed
+ */
 public class PasswordValidatorUppercaseRule extends AbstractPasswordValidationRule{
 
     @Override
