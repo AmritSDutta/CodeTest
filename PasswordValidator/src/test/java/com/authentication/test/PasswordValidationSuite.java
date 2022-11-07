@@ -24,11 +24,29 @@ public class PasswordValidationSuite {
     }
 
     @Test
+    public void testPasswordValidatorLowercaseNegative(){
+        BasicPasswordValidator basicPasswordValidator = new BasicPasswordValidator();
+        basicPasswordValidator.addRules(new PasswordValidatorLowercaseRule());
+        boolean response = basicPasswordValidator.validate("UPPERCASE");
+        Assert.assertFalse(response);
+    }
+
+
+
+    @Test
     public void testPasswordValidatorUppercase(){
         BasicPasswordValidator basicPasswordValidator = new BasicPasswordValidator();
         basicPasswordValidator.addRules(new PasswordValidatorUppercaseRule());
         boolean response = basicPasswordValidator.validate("UPPERCASE");
         Assert.assertTrue(response);
+    }
+
+    @Test
+    public void testPasswordValidatorUppercaseNegative(){
+        BasicPasswordValidator basicPasswordValidator = new BasicPasswordValidator();
+        basicPasswordValidator.addRules(new PasswordValidatorUppercaseRule());
+        boolean response = basicPasswordValidator.validate("lowercase");
+        Assert.assertFalse(response);
     }
 
     @Test
@@ -40,6 +58,14 @@ public class PasswordValidationSuite {
     }
 
     @Test
+    public void testPasswordValidatorMinimumLengthNegative(){
+        BasicPasswordValidator basicPasswordValidator = new BasicPasswordValidator();
+        basicPasswordValidator.addRules(new PasswordValidatorMinimumLengthRule());
+        boolean response = basicPasswordValidator.validate("tinypass");
+        Assert.assertFalse(response);
+    }
+
+    @Test
     public void testPasswordValidatorNotNull(){
         BasicPasswordValidator basicPasswordValidator = new BasicPasswordValidator();
         basicPasswordValidator.addRules(new PasswordValidatorNotNullRule());
@@ -48,10 +74,27 @@ public class PasswordValidationSuite {
     }
 
     @Test
+    public void testPasswordValidatorNull(){
+        BasicPasswordValidator basicPasswordValidator = new BasicPasswordValidator();
+        basicPasswordValidator.addRules(new PasswordValidatorNotNullRule());
+        boolean response = basicPasswordValidator.validate(null);
+        Assert.assertFalse(response);
+    }
+
+
+    @Test
     public void testPasswordValidatorNumberRule(){
         BasicPasswordValidator basicPasswordValidator = new BasicPasswordValidator();
         basicPasswordValidator.addRules(new PasswordValidatorNumberRule());
         boolean response = basicPasswordValidator.validate("12345678");
         Assert.assertTrue(response);
+    }
+
+    @Test
+    public void testPasswordValidatorNumberRuleNegative(){
+        BasicPasswordValidator basicPasswordValidator = new BasicPasswordValidator();
+        basicPasswordValidator.addRules(new PasswordValidatorNumberRule());
+        boolean response = basicPasswordValidator.validate("nonumber");
+        Assert.assertFalse(response);
     }
 }
