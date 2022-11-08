@@ -6,6 +6,12 @@ import com.authentication.rules.AbstractPasswordValidationRule;
 import java.util.Collections;
 import java.util.Comparator;
 
+
+/**
+ * This algo verifies at least n validations are okay.
+ * It also checks if there are any mandatory validation present,
+ * it must be processed as priority. Kind of fail-fast scenario.
+ */
 public class MandatoryRuleBasedPasswordValidator extends SubsetOfRulesPasswordValidator{
     public MandatoryRuleBasedPasswordValidator(int noOfSubset) {
         super(noOfSubset);

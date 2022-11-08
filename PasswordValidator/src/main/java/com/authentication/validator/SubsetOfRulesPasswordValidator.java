@@ -3,6 +3,10 @@ package com.authentication.validator;
 import com.authentication.exceptions.ValidationException;
 import com.authentication.rules.AbstractPasswordValidationRule;
 
+
+/**
+ * This is validation algo to verify at least n validations are okay.
+ */
 public class SubsetOfRulesPasswordValidator extends BasicPasswordValidator{
 
     protected int noOfSubset=-1;
